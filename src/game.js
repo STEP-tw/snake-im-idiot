@@ -5,15 +5,10 @@ const isHeadInContact = function(other) {
   });
 }
 
-const hasSnakeAteItself = function() {
-  let body = snake.getBody();
-  return isHeadInContact(body);
-};
-
 const hasSnakeHitTheViewPort = function() {
   return isHeadInContact(getViewPortEdgeCoords());
 };
 
 const hasGameTerminated = function() {
-  return hasSnakeAteItself() || hasSnakeHitTheViewPort();
+  return snake.ateItself() || hasSnakeHitTheViewPort();
 };
