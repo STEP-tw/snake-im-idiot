@@ -3,6 +3,15 @@ let game=undefined;
 let snake=undefined;
 let animator = undefined;
 
+const overlayOn=function(){
+  let overlay=document.getElementById("overlay");
+  overlay.style.display = "block";
+  overlay.innerHTML+="<h1> GAME OVER !!</h2><h6>Click anywhere</h6>";
+}
+const removeOverlay=function() {
+  document.getElementById("overlay").style.display="none";
+};
+
 const reloadGame = function() {
   window.location.reload();
 }
@@ -21,6 +30,7 @@ const animateSnake = function() {
   }
   if (game.hasGameTerminated()) {
     clearInterval(animator);
+    overlayOn();
     toggleDisableStateOfRestart();
   }
 }
