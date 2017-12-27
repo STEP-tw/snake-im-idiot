@@ -44,8 +44,8 @@ Position.prototype.getCoord=function() {
 }
 
 Position.prototype.isInRange=function(topLeft,bottomRight){
-  let row=topLeft.x <= this.x && bottomRight.x >= this.x;
-  let col=topLeft.y <= this.y && bottomRight.y >= this.y;
+  let row=topLeft.x < this.x && bottomRight.x > this.x;
+  let col=topLeft.y < this.y && bottomRight.y > this.y;
   return row&&col;
 }
 const generateRandomPosition=function(maxX,maxY) {
