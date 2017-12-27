@@ -12,9 +12,14 @@
    - check whether the head coords and viewport coords are same
    - if yes terminate game
    - else continue
-3.in case of terminating game directly ask user to continue
-  * if user accepts
+3.in case of terminating game directly ask user to restart
+
+  [//* if user accepts
    + if step 2.1 erase the body from point of contact to tail
    + else change the direction
   * else
-   + reload the game
+   + reload the game//] /*MISINTERPRETATION
+
+  * add a button restart which should be disabled intially
+   +when the game is over it should get enabled
+   +if user clicks on it game should restart
