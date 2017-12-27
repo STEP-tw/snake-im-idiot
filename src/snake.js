@@ -26,7 +26,10 @@ Snake.prototype={
   },
   ateItself:function() {
     return this.body.some((element)=>{
-      return head.isSameCoordAs(element);
+      return this.head.isSameCoordAs(element);
     });
+  },
+  hasHitTheWall:function(topLeft,bottomRight){
+    return !this.head.isInRange(topLeft,bottomRight);
   }
 }

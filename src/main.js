@@ -1,8 +1,6 @@
-let snake = undefined;
 let food = undefined;
-let numberOfRows = 60;
-let numberOfCols = 120;
-
+let game=undefined;
+let snake=undefined;
 let animator = undefined;
 
 const reloadGame = function() {
@@ -21,7 +19,7 @@ const animateSnake = function() {
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  if (hasGameTerminated()) {
+  if (game.hasGameTerminated()) {
     clearInterval(animator);
     toggleDisableStateOfRestart();
   }
@@ -63,7 +61,8 @@ const createSnake = function() {
   body.push(tail);
   body.push(tail.next());
   let head = tail.next().next();
-  snake = new Snake(head, body);
+  snake=new Snake(head, body)
+  game.addSnake(snake);
 }
 
 const createFood = function(numberOfRows, numberOfCols) {
@@ -71,6 +70,9 @@ const createFood = function(numberOfRows, numberOfCols) {
 }
 
 const startGame = function() {
+  let numberOfRows=60
+  let numberOfCols=120
+  game=new Game(numberOfRows,numberOfCols);
   createSnake();
   drawGrids(numberOfRows, numberOfCols);
   drawSnake(snake);
