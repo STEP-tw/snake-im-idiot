@@ -1,17 +1,17 @@
 1.observe the code and the to understand the functionalities
 2.working on game ending conditions
-  *if Snake eats itSelf.
-   + get head coords
-   + get body coords
-   + check whether head coords are same as any one of body coords.
-   + if yes terminate game
-   + else continue
-  *if Snake hits any edge of view port.
-   + get head coords
-   + get viewport coords
-   + check whether the head coords and viewport coords are same
-   + if yes terminate game
-   + else continue
+  +if Snake eats itSelf.
+   - get head coords
+   - get body coords
+   - check whether head coords are same as any one of body coords.
+   - if yes terminate game
+   - else continue
+  +if Snake hits any edge of view port.
+   - get head coords
+   - get viewport coords
+   - check whether the head coords and viewport coords are same
+   - if yes terminate game
+   - else continue
 3.in case of terminating game directly ask user to continue
   * if user accepts
    + if step 2.1 erase the body from point of contact to tail

@@ -5,6 +5,26 @@ let numberOfCols=120;
 
 let animator=undefined;
 
+const isHeadInContact=function(other){
+  let head=snake.getHead();
+  return other.some((element)=>{
+    return head.isSameCoordAs(element);
+  });
+}
+
+const hasSnakeAteItself=function(){
+  let body=snake.getBody();
+  return isHeadInContact(body);
+};
+
+const hasSnakeHitTheViewPort=function() {
+  return isHeadInContact(getViewPortEdgeCoords());
+};
+
+const hasGameTerminated=function(){
+  return hasSnakeAteItself() || hasSnakeHitTheViewPort();
+};
+
 const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
@@ -16,6 +36,9 @@ const animateSnake=function() {
     snake.grow();
     createFood(numberOfRows,numberOfCols);
     drawFood(food);
+  }
+  if(hasGameTerminated()){
+    window.location.reload();
   }
 }
 
@@ -46,7 +69,6 @@ const createSnake=function() {
   body.push(tail);
   body.push(tail.next());
   let head=tail.next().next();
-
   snake=new Snake(head,body);
 }
 
