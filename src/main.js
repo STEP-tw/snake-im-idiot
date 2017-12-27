@@ -5,6 +5,9 @@ let numberOfCols=120;
 
 let animator=undefined;
 
+const reloadGame=function() {
+  window.location.reload();
+}
 const isHeadInContact=function(other){
   let head=snake.getHead();
   return other.some((element)=>{
@@ -38,7 +41,8 @@ const animateSnake=function() {
     drawFood(food);
   }
   if(hasGameTerminated()){
-    window.location.reload();
+   clearInterval(animator);
+   toggleDisableStateOfRestart();
   }
 }
 
@@ -57,6 +61,15 @@ const changeSnakeDirection=function(event) {
   }
 }
 
+const toggleDisableStateOfRestart=function() {
+  let reset=document.getElementById('restart');
+  reset.disabled=!reset.disabled;
+}
+
+const addOnClickListenerToButton=function(){
+  let reset=document.getElementById('restart');
+  reset.onclick=reloadGame;
+}
 const addKeyListener=function() {
   let grid=document.getElementById("keys");
   grid.onkeyup=changeSnakeDirection;
@@ -83,6 +96,8 @@ const startGame=function() {
   createFood(numberOfRows,numberOfCols);
   drawFood(food);
   addKeyListener();
+  toggleDisableStateOfRestart();
+  addOnClickListenerToButton();
   animator=setInterval(animateSnake,140);
 }
 

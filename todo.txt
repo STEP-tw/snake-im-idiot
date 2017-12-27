@@ -20,6 +20,6 @@
   * else
    + reload the game//] /*MISINTERPRETATION
 
-  * add a button restart which should be disabled intially
-   +when the game is over it should get enabled
-   +if user clicks on it game should restart
+  + add a button restart which should be disabled intially
+   -when the game is over it should get enabled
+   -if user clicks on it game should restart
