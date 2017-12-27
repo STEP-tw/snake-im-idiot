@@ -1,52 +1,33 @@
-let snake=undefined;
-let food=undefined;
-let numberOfRows=60;
-let numberOfCols=120;
+let snake = undefined;
+let food = undefined;
+let numberOfRows = 60;
+let numberOfCols = 120;
 
-let animator=undefined;
+let animator = undefined;
 
-const reloadGame=function() {
+const reloadGame = function() {
   window.location.reload();
 }
-const isHeadInContact=function(other){
-  let head=snake.getHead();
-  return other.some((element)=>{
-    return head.isSameCoordAs(element);
-  });
-}
 
-const hasSnakeAteItself=function(){
-  let body=snake.getBody();
-  return isHeadInContact(body);
-};
-
-const hasSnakeHitTheViewPort=function() {
-  return isHeadInContact(getViewPortEdgeCoords());
-};
-
-const hasGameTerminated=function(){
-  return hasSnakeAteItself() || hasSnakeHitTheViewPort();
-};
-
-const animateSnake=function() {
-  let oldHead=snake.getHead();
-  let oldTail=snake.move();
-  let head=snake.getHead();
+const animateSnake = function() {
+  let oldHead = snake.getHead();
+  let oldTail = snake.move();
+  let head = snake.getHead();
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
-  if(head.isSameCoordAs(food)) {
+  if (head.isSameCoordAs(food)) {
     snake.grow();
-    createFood(numberOfRows,numberOfCols);
+    createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  if(hasGameTerminated()){
-   clearInterval(animator);
-   toggleDisableStateOfRestart();
+  if (hasGameTerminated()) {
+    clearInterval(animator);
+    toggleDisableStateOfRestart();
   }
 }
 
-const changeSnakeDirection=function(event) {
+const changeSnakeDirection = function(event) {
   switch (event.code) {
     case "KeyA":
       snake.turnLeft();
@@ -61,44 +42,44 @@ const changeSnakeDirection=function(event) {
   }
 }
 
-const toggleDisableStateOfRestart=function() {
-  let reset=document.getElementById('restart');
-  reset.disabled=!reset.disabled;
+const toggleDisableStateOfRestart = function() {
+  let reset = document.getElementById('restart');
+  reset.disabled = !reset.disabled;
 }
 
-const addOnClickListenerToButton=function(){
-  let reset=document.getElementById('restart');
-  reset.onclick=reloadGame;
+const addOnClickListenerToButton = function() {
+  let reset = document.getElementById('restart');
+  reset.onclick = reloadGame;
 }
-const addKeyListener=function() {
-  let grid=document.getElementById("keys");
-  grid.onkeyup=changeSnakeDirection;
+const addKeyListener = function() {
+  let grid = document.getElementById("keys");
+  grid.onkeyup = changeSnakeDirection;
   grid.focus();
 }
 
-const createSnake=function() {
-  let tail=new Position(12,10,"east");
-  let body=[];
+const createSnake = function() {
+  let tail = new Position(12, 10, "east");
+  let body = [];
   body.push(tail);
   body.push(tail.next());
-  let head=tail.next().next();
-  snake=new Snake(head,body);
+  let head = tail.next().next();
+  snake = new Snake(head, body);
 }
 
-const createFood=function(numberOfRows,numberOfCols) {
-  food=generateRandomPosition(numberOfCols,numberOfRows);
+const createFood = function(numberOfRows, numberOfCols) {
+  food = generateRandomPosition(numberOfCols, numberOfRows);
 }
 
-const startGame=function() {
+const startGame = function() {
   createSnake();
-  drawGrids(numberOfRows,numberOfCols);
+  drawGrids(numberOfRows, numberOfCols);
   drawSnake(snake);
-  createFood(numberOfRows,numberOfCols);
+  createFood(numberOfRows, numberOfCols);
   drawFood(food);
   addKeyListener();
   toggleDisableStateOfRestart();
   addOnClickListenerToButton();
-  animator=setInterval(animateSnake,140);
+  animator = setInterval(animateSnake, 140);
 }
 
-window.onload=startGame;
+window.onload = startGame;
