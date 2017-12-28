@@ -80,8 +80,8 @@ const createFood = function(numberOfRows, numberOfCols) {
 }
 
 const startGame = function() {
-  let numberOfRows=60
-  let numberOfCols=120
+  let numberOfRows=60;
+  let numberOfCols=120;
   game=new Game(numberOfRows,numberOfCols);
   createSnake();
   drawGrids(numberOfRows, numberOfCols);

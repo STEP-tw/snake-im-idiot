@@ -8,7 +8,7 @@ Game.prototype.addSnake=function(snake) {
 };
 Game.prototype.hasSnakeHitTheWall=function(){
   let topLeft= new Position(0,0,"east");
-  let bottomRight=new Position(this.rows,this.cols,"east");
+  let bottomRight=new Position(this.cols-1,this.rows-1,"east");
   return this.snake.hasHitTheWall(topLeft,bottomRight);
 };
 
